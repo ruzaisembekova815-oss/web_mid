@@ -1,4 +1,3 @@
-/* ---------- Palette and Bootstrap overrides ---------- */
 :root {
   --asphalt: #1c1d20;
   --track: #2b2d31;
@@ -20,7 +19,7 @@
 }
 
 html { scroll-behavior: smooth; scroll-padding-top: 72px; }
-/* Page background: darkened photo (add img/bg.jpg); without the file the dark overlay on asphalt colour is used */
+
 body {
   line-height: 1.65;
   background: linear-gradient(rgba(28, 29, 32, 0.9), rgba(28, 29, 32, 0.94)), url("../img/bground.avif") center / cover fixed, var(--asphalt);
@@ -32,7 +31,6 @@ p { max-width: 62ch; }
 .section { padding: 4rem 0; }
 
 
-/* ---------- Hero: the start lights ---------- */
 .hero { padding: 2rem 0 3rem; }
 .hero-title { font-size: 3rem; line-height: 1; margin: 0.75rem 0 1.25rem; animation: reveal 0.6s ease 3.8s both; }
 .btn-race { background: var(--red); color: var(--white); border-radius: 0; padding: 0.6rem 1.6rem; font-weight: 600; }
@@ -50,12 +48,12 @@ p { max-width: 62ch; }
 @keyframes lightOff { to { background: var(--track); box-shadow: none; } }
 @keyframes reveal   { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: none; } }
 
-/* ---------- Schedule list ---------- */
+
 .schedule .list-group-item { background: var(--track); border-color: var(--line); display: flex; flex-direction: column; padding: 1rem 1.25rem; }
 .schedule strong { font-family: var(--font-head); font-size: 1.4rem; color: var(--flag); }
 .schedule span { color: var(--muted); }
 
-/* ---------- TASK 1: own CSS only, mobile-first ---------- */
+
 .facts { background: var(--track); padding: 3rem 1rem; border-top: 6px solid var(--white); }
 .facts-inner { max-width: 1200px; margin: 0 auto; }
 .facts-title { font-size: 1.75rem; margin-bottom: 1.5rem; text-align: left; }   /* phone */
@@ -75,7 +73,7 @@ p { max-width: 62ch; }
   .fact-value { font-size: 4rem; }
 }
 
-/* ---------- Cards and accordion ---------- */
+
 .race-card { background: var(--track); border: 1px solid var(--line); border-top: 4px solid var(--red); border-radius: 0; transition: border-top-color 0.3s ease; }
 .race-card:hover { border-top-color: var(--flag); }
 .race-card a { font-weight: 600; text-decoration: underline; text-underline-offset: 4px; }
@@ -92,10 +90,10 @@ p { max-width: 62ch; }
 }
 .accordion-button { font-family: var(--font-head); font-size: 1.3rem; }
 
-/* ---------- Footer ---------- */
+
 .site-footer { border-top: 1px solid var(--line); padding: 2rem 0; color: var(--muted); font-size: 0.9rem; }
 
-/* ---------- Larger screens for Bootstrap parts ---------- */
+
 @media (min-width: 768px) {
   .hero-title { font-size: 4.5rem; }
   h2 { font-size: 2.5rem; }
@@ -112,7 +110,7 @@ p { max-width: 62ch; }
   * { transition: none !important; }
 }
 
-/* ---------- F1-style layout pieces ---------- */
+
 
 .tag { display: inline-block; background: var(--red); color: var(--white); font-family: var(--font-head); font-size: 0.85rem; letter-spacing: 0.08em; text-transform: uppercase; padding: 0.1rem 0.5rem; }
 
@@ -138,7 +136,6 @@ p { max-width: 62ch; }
   .feature { padding: 3rem; clip-path: polygon(0 0, 100% 0, 100% 88%, 94% 100%, 0 100%); }   /* diagonal cut */
 }
 
-/* ---------- Header: picture banner + red horizontal navigation ---------- */
 .banner {
   min-height: 150px;
   display: flex;
@@ -160,18 +157,17 @@ p { max-width: 62ch; }
   .logo { font-size: 4rem; }
 }
 
-/* ======================= MIDTERM: shared pieces for all pages ======================= */
 
-/* Chequered flag strip under the navigation (same on every page) */
+
 .flag-strip {
   height: 16px;
   background: repeating-conic-gradient(var(--white) 0 25%, #000 0 50%) 0 0 / 16px 16px;
 }
 
-/* Active page in the navigation */
+
 .site-nav .nav-link.active { border-bottom-color: var(--flag); }
 
-/* Inner page title block */
+
 .page-hero {
   padding: 3rem 0 2rem;
   background: linear-gradient(135deg, rgba(43, 45, 49, 0.9) 55%, rgba(58, 18, 16, 0.9));
@@ -180,10 +176,10 @@ p { max-width: 62ch; }
 .page-hero h1 { font-size: 3rem; line-height: 1; margin: 0.75rem 0 1rem; }
 @media (min-width: 768px) { .page-hero { padding: 4.5rem 0 3rem; } .page-hero h1 { font-size: 4.5rem; } }
 
-/* Three tips: 3 columns on laptop instead of 4 */
+
 @media (min-width: 1200px) { .tips-grid { grid-template-columns: repeat(3, 1fr); } }
 
-/* Timeline (own CSS Grid, mobile-first): year above text on a phone, side by side from 768px */
+
 .timeline { list-style: none; margin: 0; padding: 0 0 0 0.25rem; border-left: 3px solid var(--red); }
 .timeline li {
   display: grid;
@@ -211,7 +207,7 @@ p { max-width: 62ch; }
   .timeline li { grid-template-columns: 6rem 1fr; gap: 1.5rem; }
 }
 
-/* Form */
+
 .race-form .form-label { font-weight: 600; }
 .race-form .form-control, .race-form .form-select {
   background-color: var(--track);
