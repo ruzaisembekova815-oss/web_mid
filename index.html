@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en" data-bs-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Lights Out | A beginner's guide to Formula 1</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700&family=Barlow:wght@400;600&display=swap" rel="stylesheet">
+  <!-- Bootstrap first, own CSS after it so it can override -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="css/style.css" rel="stylesheet">
+</head>
+<body>
+
+<!-- HEADER BANNER: picture + logo (the picture is img/header.svg) -->
+<header class="banner">
+  <div class="container d-flex align-items-center justify-content-between">
+    <a class="logo" href="index.html">Lights<span>Out</span></a>
+    <!-- hidden on phones -->
+    <p class="banner-note d-none d-md-block mb-0">A beginner's guide to Formula 1</p>
+  </div>
+</header>
+
+<!-- NAVIGATION: horizontal from 768px up, collapses to a menu button on phones (Bootstrap) -->
+<nav class="navbar navbar-expand-md site-nav sticky-top">
+  <div class="container">
+    <button class="navbar-toggler ms-auto" type="button" data-bs-toggle="collapse" data-bs-target="#mainMenu"
+            aria-controls="mainMenu" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="mainMenu">
+      <ul class="navbar-nav w-100">
+        <li class="nav-item"><a class="nav-link active" aria-current="page" href="index.html">Home</a></li>
+        <li class="nav-item"><a class="nav-link" href="teams.html">Teams</a></li>
+        <li class="nav-item"><a class="nav-link" href="history.html">History and safety</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+<div class="flag-strip" aria-hidden="true"></div>
+
+<main id="top">
+
+  <!-- HERO: feature grid, lead story + list (Bootstrap grid) -->
+  <header class="hero">
+    <div class="container">
+      <div class="row g-4">
+        <div class="col-12 col-lg-8">
+          <div class="feature">
+            <div class="lights" aria-hidden="true">
+              <span style="--i:0"></span><span style="--i:1"></span><span style="--i:2"></span>
+              <span style="--i:3"></span><span style="--i:4"></span>
+            </div>
+            <span class="tag">Beginner's guide</span>
+            <h1 class="hero-title">Lights out and away we go</h1>
+            <p class="lead">New to Formula 1? Learn how a race weekend works, what the words mean and how points are won.</p>
+            <a href="#weekend" class="btn btn-race">Start the guide</a>
+            <!-- shown only on phones -->
+            <p class="scroll-hint d-md-none mt-4 mb-0">Scroll down to continue</p>
+          </div>
+        </div>
+        <div class="col-12 col-lg-4">
+          <h2 class="list-title">Start here</h2>
+          <ul class="feature-list list-unstyled">
+            <li><a href="#weekend"><span class="tag">Basics</span>How a race weekend works</a></li>
+            <li><a href="#points"><span class="tag">Rules</span>How points are awarded</a></li>
+            <li><a href="#terms"><span class="tag">Words</span>Glossary for beginners</a></li>
+            <li><a href="#explore"><span class="tag">Next</span>Teams, drivers and history</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- TWO COLUMNS (Bootstrap): text first on phone, schedule on the left on desktop -->
+  <section id="weekend" class="section">
+    <div class="container">
+      <div class="row align-items-center gy-5 gx-md-5">
+        <div class="col-12 col-md-6">
+          <h2>How a race weekend works</h2>
+          <p>A Grand Prix is not one race but three days. Drivers practise on Friday, fight for their starting
+            positions on Saturday and race on Sunday. The faster a driver is in qualifying, the closer to the
+            front they start.</p>
+          <p>Some weekends have a shorter sprint race, so the schedule can change. Check the official calendar
+            before you watch.</p>
+        </div>
+        <div class="col-12 col-md-6 order-md-first">
+          <ul class="list-group schedule">
+            <li class="list-group-item"><strong>Friday</strong><span>Practice: teams test the car and tyres</span></li>
+            <li class="list-group-item"><strong>Saturday</strong><span>Qualifying: sets the starting grid</span></li>
+            <li class="list-group-item"><strong>Sunday</strong><span>The race: the full distance for points</span></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TASK 1: OWN CSS ONLY (no Bootstrap classes in this section) -->
+  <section id="facts" class="facts">
+    <div class="facts-inner">
+      <h2 class="facts-title">The basics in four numbers</h2>
+      <div class="facts-grid">
+        <article class="fact">
+          <p class="fact-value">2</p>
+          <p class="fact-label">Cars per team, driven by two drivers</p>
+        </article>
+        <article class="fact">
+          <p class="fact-value">25</p>
+          <p class="fact-label">Points for winning a race</p>
+        </article>
+        <article class="fact">
+          <p class="fact-value">305 km</p>
+          <p class="fact-label">Minimum race distance (Monaco is shorter)</p>
+        </article>
+        <article class="fact">
+          <p class="fact-value">2 h</p>
+          <p class="fact-label">Time limit for a race, not counting stoppages</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- CARDS (Bootstrap): 1 / 2 / 3 per row -->
+  <section id="explore" class="section">
+    <div class="container">
+      <h2 class="mb-4">Explore the guide</h2>
+      <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+        <div class="col">
+          <div class="card race-card h-100">
+            <div class="card-body">
+              <span class="tag">Grid</span>
+              <h3 class="card-title h4 mt-2">Teams and drivers</h3>
+              <p class="card-text">Who races, who they race for and how to tell the cars apart.</p>
+              <a href="teams.html" class="stretched-link">Meet the grid</a>
+            </div>
+          </div>
+        </div>
+        <div class="col">
+          <div class="card race-card h-100">
+            <div class="card-body">
+              <span class="tag">Words</span>
+              <h3 class="card-title h4 mt-2">Glossary</h3>
+              <p class="card-text">Pole position, pit stop, safety car and other words explained simply.</p>
+              <a href="#terms" class="stretched-link">Open the glossary</a>
+            </div>
+          </div>
+        </div>
+        <div class="col">
+          <div class="card race-card h-100">
+            <div class="card-body">
+              <span class="tag">Story</span>
+              <h3 class="card-title h4 mt-2">History and crashes</h3>
+              <p class="card-text">How the sport began, and how safety changed after its hardest moments.</p>
+              <a href="history.html" class="stretched-link">Read the history</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TABLE (Bootstrap) -->
+  <section id="points" class="section">
+    <div class="container">
+      <div class="row gy-5 gx-md-5">
+        <div class="col-12 col-lg-5">
+          <h2>How points work</h2>
+          <p>Only the first ten drivers in a race score points. Points are added up over the season, and the driver
+            and the team with the most points win the championships. Sprint races give points separately.</p>
+        </div>
+        <div class="col-12 col-lg-7">
+          <div class="table-responsive">
+            <table class="table data-table rank align-middle mb-0">
+              <caption>Points for a Grand Prix finishing position</caption>
+              <thead><tr><th scope="col">Pos.</th><th scope="col">Pts.</th><th scope="col">Result</th></tr></thead>
+              <tbody>
+            <tr><th scope="row">1</th><td>25</td><td>Race winner</td></tr>
+            <tr><th scope="row">2</th><td>18</td><td>Podium</td></tr>
+            <tr><th scope="row">3</th><td>15</td><td>Podium</td></tr>
+            <tr><th scope="row">4</th><td>12</td><td>Points finish</td></tr>
+            <tr><th scope="row">5</th><td>10</td><td>Points finish</td></tr>
+            <tr><th scope="row">6</th><td>8</td><td>Points finish</td></tr>
+            <tr><th scope="row">7</th><td>6</td><td>Points finish</td></tr>
+            <tr><th scope="row">8</th><td>4</td><td>Points finish</td></tr>
+            <tr><th scope="row">9</th><td>2</td><td>Points finish</td></tr>
+            <tr><th scope="row">10</th><td>1</td><td>Last points place</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ACCORDION (Bootstrap component) -->
+  <section id="terms" class="section">
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-12 col-lg-8">
+          <h2 class="mb-4">Glossary for beginners</h2>
+          <div class="accordion" id="termList">
+            <div class="accordion-item">
+              <h3 class="accordion-header">
+                <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#t1"
+                        aria-expanded="true" aria-controls="t1">Pole position</button>
+              </h3>
+              <div id="t1" class="accordion-collapse collapse show" data-bs-parent="#termList">
+                <div class="accordion-body">The first place on the starting grid. It goes to the driver with the fastest lap in qualifying.</div>
+              </div>
+            </div>
+            <div class="accordion-item">
+              <h3 class="accordion-header">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#t2"
+                        aria-expanded="false" aria-controls="t2">Pit stop</button>
+              </h3>
+              <div id="t2" class="accordion-collapse collapse" data-bs-parent="#termList">
+                <div class="accordion-body">A quick visit to the pit lane to change tyres. The best crews do it in about two seconds.</div>
+              </div>
+            </div>
+            <div class="accordion-item">
+              <h3 class="accordion-header">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#t3"
+                        aria-expanded="false" aria-controls="t3">Safety car</button>
+              </h3>
+              <div id="t3" class="accordion-collapse collapse" data-bs-parent="#termList">
+                <div class="accordion-body">A car that leads the field at reduced speed after an accident, so marshals can work safely. Overtaking is not allowed.</div>
+              </div>
+            </div>
+            <div class="accordion-item">
+              <h3 class="accordion-header">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#t4"
+                        aria-expanded="false" aria-controls="t4">Tyre compounds</button>
+              </h3>
+              <div id="t4" class="accordion-collapse collapse" data-bs-parent="#termList">
+                <div class="accordion-body">Soft tyres are fast but wear out quickly, hard tyres last longer but are slower, and medium sit in between. Strategy is choosing when to switch.</div>
+              </div>
+            </div>
+            <div class="accordion-item">
+              <h3 class="accordion-header">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#t5"
+                        aria-expanded="false" aria-controls="t5">Flags</button>
+              </h3>
+              <div id="t5" class="accordion-collapse collapse" data-bs-parent="#termList">
+                <div class="accordion-body">Yellow means danger ahead, red stops the session, and the chequered flag ends the race.</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+    <div class="row gy-4">
+      <div class="col-12 col-md-4"><p class="footer-brand">Lights Out</p><p class="mb-0">A beginner's guide to Formula 1.</p></div>
+      <div class="col-6 col-md-3"><h2 class="footer-title">Pages</h2>
+        <ul class="list-unstyled"><li><a href="index.html">Home</a></li><li><a href="teams.html">Teams</a></li><li><a href="history.html">History and safety</a></li></ul></div>
+      <div class="col-6 col-md-2"><h2 class="footer-title">Guide</h2>
+        <ul class="list-unstyled"><li><a href="index.html#weekend">Race weekend</a></li><li><a href="index.html#points">Points</a></li><li><a href="index.html#terms">Glossary</a></li></ul></div>
+      <div class="col-12 col-md-3"><h2 class="footer-title">Project</h2>
+        <ul class="list-unstyled"><li><a href="https://github.com/your-username/your-repo">GitHub repository</a></li><li>Sources: add links to official Formula 1 and FIA documents</li></ul></div>
+    </div>
+    <p class="legal mb-0">Header photo: "2015 Malaysian GP opening lap" by <a href="https://commons.wikimedia.org/wiki/File:2015_Malaysian_GP_opening_lap.jpg">Morio</a>, Wikimedia Commons, CC BY-SA. Background photo by <a href="https://unsplash.com/@martisierraa">Martí Sierra</a> on <a href="https://unsplash.com/photos/a-red-and-yellow-race-car-driving-down-a-race-track-8zs2Co614PQ">Unsplash</a>. Fan project. Not affiliated with or endorsed by Formula 1 or the FIA.</p>
+  </div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
