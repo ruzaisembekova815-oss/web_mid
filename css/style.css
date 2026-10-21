@@ -31,7 +31,10 @@ p { max-width: 62ch; }
 .section { padding: 4rem 0; }
 
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> eb4aa990d758e033bb0b556cbb1f132af2ac8922
 .hero { padding: 2rem 0 3rem; }
 .hero-title { font-size: 3rem; line-height: 1; margin: 0.75rem 0 1.25rem; animation: reveal 0.6s ease 3.8s both; }
 .btn-race { background: var(--red); color: var(--white); border-radius: 0; padding: 0.6rem 1.6rem; font-weight: 600; }
@@ -137,7 +140,10 @@ p { max-width: 62ch; }
   .feature { padding: 3rem; clip-path: polygon(0 0, 100% 0, 100% 88%, 94% 100%, 0 100%); }   
 }
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> eb4aa990d758e033bb0b556cbb1f132af2ac8922
 .banner {
   min-height: 150px;
   display: flex;
@@ -161,7 +167,10 @@ p { max-width: 62ch; }
 
 
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> eb4aa990d758e033bb0b556cbb1f132af2ac8922
 .flag-strip {
   height: 16px;
   background: repeating-conic-gradient(var(--white) 0 25%, #000 0 50%) 0 0 / 16px 16px;
@@ -170,6 +179,10 @@ p { max-width: 62ch; }
 
 .site-nav .nav-link.active { border-bottom-color: var(--flag); }
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> eb4aa990d758e033bb0b556cbb1f132af2ac8922
 .page-hero {
   padding: 3rem 0 2rem;
   background: linear-gradient(135deg, rgba(43, 45, 49, 0.9) 55%, rgba(58, 18, 16, 0.9));
