@@ -8,7 +8,7 @@ const ZONES = [
 ];
 const TAKEN = ["A4", "A5", "B1", "B6", "C3", "D2", "D3", "E5", "E6", "F8", "F9"];
 
-// seats[row][column] = { id, row, number, zone, price, taken, selected }
+
 const seats = [];
 for (const zone of ZONES) {
   for (const letter of zone.rows) {
@@ -39,7 +39,7 @@ const zoneName = (id) => ZONES.find((z) => z.id === id).name;
 const allSeats = () => seats.flat();
 const selectedSeats = () => allSeats().filter((s) => s.selected);
 
-// zone filter and legend are built from the data
+
 for (const z of ZONES) {
   const o = makeEl("option", "", z.name);
   o.value = z.id;
@@ -49,7 +49,7 @@ for (const [cls, text] of [["key-stand", "Grandstand $250"], ["key-ga", "General
   byId("legend").append(makeEl("li", cls, text));
 }
 
-// the only function that draws the map: call it after every change of the data
+
 function render() {
   const q = seatSearch.value.trim().toUpperCase();
   const zf = zoneFilter.value;
@@ -80,7 +80,7 @@ function render() {
   }
   byId("seat-empty").textContent = filtering && matches === 0 ? "No seats found. Change the search or the zone." : "";
 
-  // own loop: the live total of the selected seats
+
   let total = 0;
   const picked = selectedSeats();
   for (const s of picked) total += s.price;
@@ -97,12 +97,12 @@ function toggleSeat(id) {
   if (activeZone === null) return seatSay("Choose Grandstand or General admission in the form first.", "bad");
   if (seat.zone !== activeZone) return seatSay(`Seat ${id} is in ${zoneName(seat.zone)}. Change the ticket type to choose it.`, "bad");
   if (!seat.selected && selectedSeats().length >= MAX_SEATS) return seatSay(`You can select at most ${MAX_SEATS} seats.`, "bad");
-  seat.selected = !seat.selected;   // change the data first ...
+  seat.selected = !seat.selected;   
   seatSay("", "");
-  render();                         // ... then draw it
+  render();                        
 }
 
-// free seats together, closest to the center of the hall
+
 function bestSeats() {
   const n = Number(bestCount.value);
   if (!Number.isInteger(n) || n < 1 || n > MAX_SEATS) return seatSay(`Enter a number from 1 to ${MAX_SEATS}.`, "bad");
@@ -115,7 +115,7 @@ function bestSeats() {
     for (let c = 0; c + n <= COLS; c++) {
       const block = line.slice(c, c + n);
       if (block.some((s) => s.taken)) continue;
-      if (c < AISLE_AFTER && c + n > AISLE_AFTER && n <= AISLE_AFTER) continue;   // not across the aisle
+      if (c < AISLE_AFTER && c + n > AISLE_AFTER && n <= AISLE_AFTER) continue;   
       const score = Math.abs(c + (n - 1) / 2 - midCol) + Math.abs(r - midRow);
       if (best === null || score < best.score) best = { score, block };
     }

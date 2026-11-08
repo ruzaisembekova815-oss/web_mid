@@ -127,7 +127,7 @@ form.addEventListener("input", (e) => {
   if (e.target.id === "type" && touched.has($("qty"))) check($("qty"));
 });
 
-// the seat map changed: the quantity follows the selected seats
+
 document.addEventListener("seats-change", () => {
   const t = findType();
   if (t && t.zone) $("qty").value = SeatMap.selected().length || "";
@@ -163,8 +163,9 @@ form.addEventListener("submit", (e) => {
   ticket.append(el("p", "mb-1", `${qty} × ${t.name}` + (ids.length > 0 ? ` (seats ${ids.join(", ")})` : "") + ` for ${$("fullname").value.trim()}`));
   ticket.append(el("p", "mb-0", `Total: $${total.toFixed(2)}`));
   $("result").replaceChildren(ticket);
+  document.dispatchEvent(new CustomEvent("ticket-booked"));
 
-  if (t.zone) SeatMap.bookSelected(); else t.left -= qty;   // the seats are really taken
+  if (t.zone) SeatMap.bookSelected(); else t.left -= qty;   
   form.reset();
   touched.clear();
   for (const f of fields) show(f, "");

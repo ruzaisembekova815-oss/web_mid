@@ -57,3 +57,4 @@
 .ticket-done { border: 2px dashed var(--flag); background: var(--track); padding: 1.25rem; margin-top: 1rem; }
 .ticket-done .code { font-family: var(--font-head); font-size: 2.2rem; color: var(--flag); margin: 0; }
 @media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
+

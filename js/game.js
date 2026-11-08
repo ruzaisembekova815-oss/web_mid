@@ -1,5 +1,3 @@
-// ===== Task 1: Higher or Lower (turns of F1 circuits) =====
-// All numbers of the game are constants. Check the turn counts on formula1.com.
 const LIVES = 3;
 const LOG_SIZE = 5;
 const CIRCUITS = [
@@ -12,14 +10,14 @@ const CIRCUITS = [
 ];
 
 const $ = (id) => document.getElementById(id);
-let state = null;   // the whole state of one game
-let best = 0;       // best streak since the page was opened
+let state = null;   
+let best = 0;       
 
-// whole number from min to max, both included
+
 function randInt(min, max) {
   return Math.floor(Math.random() * (max - min + 1)) + min;
 }
-// remove a random item from the list and return it
+
 function takeRandom(list) {
   return list.splice(randInt(0, list.length - 1), 1)[0];
 }
@@ -40,7 +38,6 @@ function newGame() {
 }
 
 function guess(choice) {
-  // invalid input: show a message and leave the state unchanged
   if (state.over) return say("The game is over. Press New game.", "bad");
   if (choice !== "higher" && choice !== "lower") return say("Choose Higher or Lower.", "bad");
 
