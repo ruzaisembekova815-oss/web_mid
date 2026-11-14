@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" data-bs-theme="dark">
+<html lang="en" >
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -9,8 +9,11 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700&amp;family=Barlow:wght@400;600&amp;display=swap" rel="stylesheet">
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+<link href="css/theme.css" rel="stylesheet">   <!-- перед style.css -->
 <link href="css/style.css" rel="stylesheet">
 <link href="css/app.css" rel="stylesheet">
+<link href="css/theme-fixes.css" rel="stylesheet">
+<script src="js/theme.js"></script>             <!-- в head, без defer -->
 </head>
 <body>
 <header class="banner"><div class="container d-flex align-items-center justify-content-between">
@@ -18,7 +21,7 @@
 <p class="banner-note d-none d-md-block mb-0">A beginner's guide to Formula 1</p></div></header>
 <nav class="navbar navbar-expand-md site-nav sticky-top"><div class="container">
 <button class="navbar-toggler ms-auto" type="button" data-bs-toggle="collapse" data-bs-target="#mainMenu" aria-controls="mainMenu" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
-<div class="collapse navbar-collapse" id="mainMenu"><ul class="navbar-nav w-100"><li class="nav-item"><a class="nav-link" href="index.html">Home</a></li><li class="nav-item"><a class="nav-link" href="teams.html">Teams</a></li><li class="nav-item"><a class="nav-link" href="history.html">History and safety</a></li><li class="nav-item"><a class="nav-link active" href="play.html" aria-current="page">Game</a></li><li class="nav-item"><a class="nav-link" href="tickets.html">Tickets</a></li></ul></div></div></nav>
+<div class="collapse navbar-collapse" id="mainMenu"><ul class="navbar-nav w-100"><li class="nav-item"><a class="nav-link" href="index.html">Home</a></li><li class="nav-item"><a class="nav-link" href="teams.html">Teams</a></li><li class="nav-item"><a class="nav-link" href="history.html">History and safety</a></li><li class="nav-item"><a class="nav-link active" href="play.html" aria-current="page">Game</a></li><li class="nav-item"><a class="nav-link" href="tickets.html">Tickets</a></li><li class="nav-item"><a class="nav-link" href="mytickets.html">My tickets <span class="nav-count" data-bookings-count>0</span></a></li></ul></div></div></nav>
 <div class="flag-strip" aria-hidden="true"></div>
 <main>
 <header class="page-hero"><div class="container"><span class="tag">Game</span><h1>Higher or Lower</h1><p class="lead">Does the next circuit have more or fewer corners? Three lives, how long can you last?</p></div></header>

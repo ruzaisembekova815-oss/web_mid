@@ -279,3 +279,23 @@ p { max-width: 62ch; }
 .race-card:hover { transform: translateY(-4px); box-shadow: 0 8px 20px rgba(0,0,0,.4); }
 .back-top { position: fixed; right: 1rem; bottom: 1rem; width: 2.75rem; height: 2.75rem; background: var(--red); color: var(--white); border: 2px solid var(--white); border-radius: 0; font-size: 1.25rem; z-index: 1030; }
 .back-top:hover { background: var(--white); color: var(--asphalt); }
+
+html { scroll-padding-top: 70px; }
+
+.back-top {
+  position: fixed;
+  right: 1rem;
+  bottom: 1rem;
+  width: 44px;
+  height: 44px;
+  border: 0;
+  border-radius: 50%;
+  background: var(--accent);
+  color: var(--accent-text);
+  font-size: 1.25rem;
+  cursor: pointer;
+  z-index: 50;
+  transition: transform .15s ease;
+}
+.back-top:hover { transform: translateY(-2px); }
+.back-top:focus-visible { outline: 3px solid var(--focus); outline-offset: 2px; }

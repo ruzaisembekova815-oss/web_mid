@@ -14,8 +14,9 @@ const SOLD_OUT = ["2027-05-30", "2027-09-04"];
 const PROMOS = [{ code: "LIGHTS10", percent: 10 }, { code: "PITSTOP15", percent: 15 }];
 const CODE_CHARS = "ABCDEFGHJKLMNPQRSTUVWXYZ23456789";
 
-const $ = (id) => document.getElementById(id);
-const form = $("ticket-form");
+// Named byId (not $) so it does not overwrite jQuery
+const byId = (id) => document.getElementById(id);
+const form = byId("ticket-form");
 form.noValidate = true;     // turns off only the browser messages; checkValidity() still works
 const fields = [...form.querySelectorAll("[data-field]")];   // only the booking fields, not the seat map controls
 const touched = new Set();
@@ -28,7 +29,7 @@ function el(tag, className, text) {
 }
 function randInt(min, max) { return Math.floor(Math.random() * (max - min + 1)) + min; }
 
-for (const [select, list] of [[$("event"), EVENTS], [$("type"), TYPES]]) {
+for (const [select, list] of [[byId("event"), EVENTS], [byId("type"), TYPES]]) {
   for (const item of list) {
     const o = el("option", "", item.name);
     o.value = item.id;
@@ -36,9 +37,9 @@ for (const [select, list] of [[$("event"), EVENTS], [$("type"), TYPES]]) {
   }
 }
 
-const findEvent = () => EVENTS.find((e) => e.id === $("event").value);
-const findType = () => TYPES.find((t) => t.id === $("type").value);
-const findPromo = () => PROMOS.find((p) => p.code === $("promo").value.trim().toUpperCase());
+const findEvent = () => EVENTS.find((e) => e.id === byId("event").value);
+const findType = () => TYPES.find((t) => t.id === byId("type").value);
+const findPromo = () => PROMOS.find((p) => p.code === byId("promo").value.trim().toUpperCase());
 const priceOf = (t) => t.zone ? SeatMap.zones.find((z) => z.id === t.zone).price : t.price;
 const leftOf = (t) => t.zone ? SeatMap.freeCount(t.zone) : t.left;
 
@@ -78,7 +79,7 @@ function builtIn(f) {
 }
 
 function show(f, message) {
-  $(f.id + "-error").textContent = message;
+  byId(f.id + "-error").textContent = message;
   f.classList.toggle("is-invalid", message !== "");
   f.classList.toggle("is-valid", message === "" && f.value !== "");
   f.setAttribute("aria-invalid", message === "" ? "false" : "true");
@@ -94,20 +95,20 @@ function check(f) {
 }
 
 function preview() {
-  const ev = findEvent(), t = findType(), qty = Number($("qty").value), promo = findPromo();
+  const ev = findEvent(), t = findType(), qty = Number(byId("qty").value), promo = findPromo();
   const ids = t && t.zone ? SeatMap.selected().map((s) => s.id) : [];
-  $("pv-event").textContent = ev ? ev.name : "—";
-  $("pv-date").textContent = $("date").value || "—";
-  $("pv-type").textContent = t ? t.name : "—";
-  $("pv-seats").textContent = ids.length > 0 ? ids.join(", ") : "—";
-  $("pv-qty").textContent = qty > 0 ? qty : "—";
-  $("pv-name").textContent = $("fullname").value.trim() || "—";
-  $("type-hint").textContent = !t ? "" : t.zone ? `Free seats: ${leftOf(t)}. Pick them on the map below.` : `Seats left: ${t.left}`;
+  byId("pv-event").textContent = ev ? ev.name : "—";
+  byId("pv-date").textContent = byId("date").value || "—";
+  byId("pv-type").textContent = t ? t.name : "—";
+  byId("pv-seats").textContent = ids.length > 0 ? ids.join(", ") : "—";
+  byId("pv-qty").textContent = qty > 0 ? qty : "—";
+  byId("pv-name").textContent = byId("fullname").value.trim() || "—";
+  byId("type-hint").textContent = !t ? "" : t.zone ? `Free seats: ${leftOf(t)}. Pick them on the map below.` : `Seats left: ${t.left}`;
   if (t && qty > 0) {
     const total = priceOf(t) * qty * (1 - (promo ? promo.percent : 0) / 100);
-    $("pv-total").textContent = `$${total.toFixed(2)}` + (promo ? ` (-${promo.percent}%)` : "");
+    byId("pv-total").textContent = `$${total.toFixed(2)}` + (promo ? ` (-${promo.percent}%)` : "");
   } else {
-    $("pv-total").textContent = "—";
+    byId("pv-total").textContent = "—";
   }
 }
 
@@ -123,16 +124,16 @@ form.addEventListener("input", (e) => {
   preview();
   if (touched.has(e.target) && fields.includes(e.target)) check(e.target);
   // fields that depend on this one are checked again
-  if (e.target.id === "event" && touched.has($("date"))) check($("date"));
-  if (e.target.id === "type" && touched.has($("qty"))) check($("qty"));
+  if (e.target.id === "event" && touched.has(byId("date"))) check(byId("date"));
+  if (e.target.id === "type" && touched.has(byId("qty"))) check(byId("qty"));
 });
 
 
 document.addEventListener("seats-change", () => {
   const t = findType();
-  if (t && t.zone) $("qty").value = SeatMap.selected().length || "";
+  if (t && t.zone) byId("qty").value = SeatMap.selected().length || "";
   preview();
-  if (touched.has($("qty"))) check($("qty"));
+  if (touched.has(byId("qty"))) check(byId("qty"));
 });
 
 form.addEventListener("submit", (e) => {
@@ -142,7 +143,7 @@ form.addEventListener("submit", (e) => {
     touched.add(f);
     if (!check(f)) invalid.push(f);
   }
-  const summary = $("summary");
+  const summary = byId("summary");
   if (invalid.length > 0) {
     summary.textContent = `Please fix ${invalid.length} ${invalid.length === 1 ? "error" : "errors"} below.`;
     summary.classList.remove("d-none");
@@ -150,27 +151,42 @@ form.addEventListener("submit", (e) => {
     return;
   }
   summary.classList.add("d-none");
-  const ev = findEvent(), t = findType(), qty = Number($("qty").value), promo = findPromo();
+  const ev = findEvent(), t = findType(), qty = Number(byId("qty").value), promo = findPromo();
   const ids = t.zone ? SeatMap.selected().map((s) => s.id) : [];
   const total = priceOf(t) * qty * (1 - (promo ? promo.percent : 0) / 100);
   let code = "LO-";
   for (let i = 0; i < 6; i++) code += CODE_CHARS[randInt(0, CODE_CHARS.length - 1)];
 
+  // Save the booking to localStorage as JSON (read later by my-tickets.html).
+  // Must happen BEFORE form.reset(), otherwise the fields are empty.
+  if (window.LO && LO.bookings) {
+    LO.bookings.add({
+      code: code,
+      event: ev.name,
+      date: byId("date").value,
+      type: t.name,
+      seats: ids.join(", "),
+      qty: qty,
+      name: byId("fullname").value.trim(),
+      total: Math.round(total * 100) / 100
+    });
+  }
+
   const ticket = el("article", "ticket-done");
   ticket.append(el("h2", "h4", "Your ticket is booked"));
   ticket.append(el("p", "code", code));
-  ticket.append(el("p", "mb-1", `${ev.name}, ${$("date").value}`));
-  ticket.append(el("p", "mb-1", `${qty} × ${t.name}` + (ids.length > 0 ? ` (seats ${ids.join(", ")})` : "") + ` for ${$("fullname").value.trim()}`));
+  ticket.append(el("p", "mb-1", `${ev.name}, ${byId("date").value}`));
+  ticket.append(el("p", "mb-1", `${qty} × ${t.name}` + (ids.length > 0 ? ` (seats ${ids.join(", ")})` : "") + ` for ${byId("fullname").value.trim()}`));
   ticket.append(el("p", "mb-0", `Total: $${total.toFixed(2)}`));
-  $("result").replaceChildren(ticket);
+  byId("result").replaceChildren(ticket);
   document.dispatchEvent(new CustomEvent("ticket-booked"));
 
-  if (t.zone) SeatMap.bookSelected(); else t.left -= qty;   
+  if (t.zone) SeatMap.bookSelected(); else t.left -= qty;
   form.reset();
   touched.clear();
   for (const f of fields) show(f, "");
   SeatMap.setZone(null);
   preview();
-  $("result").focus();
+  byId("result").focus();
 });
 preview();

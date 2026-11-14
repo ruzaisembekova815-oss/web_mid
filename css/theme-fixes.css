@@ -1,0 +1,222 @@
+/* Подключи ПОСЛЕДНИМ на каждой странице (после style.css и app.css):
+   <link href="css/theme-fixes.css" rel="stylesheet">
+   ADJUST: селекторы помечены комментарием, подгони под свои классы. */
+
+/* 1. Слой поверх фонового фото: тёмный в dark, светлый в light.
+      Фото остаётся, но текст читается в обоих режимах. */
+:root {
+  --photo-overlay: rgba(255, 255, 255, 0.90);
+  --year-color: #9a6b00;          /* тёмное золото: читается на светлом фоне */
+}
+[data-theme="dark"] {
+  --photo-overlay: rgba(12, 12, 18, 0.78);
+  --year-color: #ffd60a;          /* твой жёлтый для тёмного режима */
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background: var(--photo-overlay);
+  z-index: -1;
+  pointer-events: none;
+  transition: background-color .25s ease;
+}
+
+/* 2. Годы на таймлайне (history.html) */
+.timeline-year,            /* ADJUST: класс, на котором у тебя жёлтые годы */
+.timeline .year {
+  color: var(--year-color);
+}
+
+/* 3. Навбар красный в обоих режимах, поэтому его текст всегда белый */
+.site-nav .nav-link,
+.site-nav .nav-link:hover,
+.site-nav .nav-link:focus-visible,
+.site-nav .nav-link.active {
+  color: #ffffff;
+}
+.site-nav .nav-link.active {
+  font-weight: 700;
+  border-bottom: 3px solid #ffd60a;     /* подсветка текущей страницы */
+}
+
+/* 4. Счётчик My tickets: белый на красном навбаре */
+.site-nav .nav-count {
+  background: #ffffff;
+  color: #b00500;
+  font-weight: 700;
+}
+
+/* 5. Кнопка темы в навбаре: заметная, белая на красном */
+.site-nav .theme-toggle {
+  background: rgba(255, 255, 255, 0.15);
+  color: #ffffff;
+  border: 2px solid #ffffff;
+  border-radius: 999px;
+  padding: .35rem 1rem;
+  font-weight: 600;
+  line-height: 1.2;
+  display: inline-flex;
+  align-items: center;
+  gap: .4rem;
+  transition: background-color .2s ease, transform .15s ease;
+}
+.site-nav .theme-toggle:hover {
+  background: #ffffff;
+  color: #b00500;
+  transform: translateY(-1px);
+}
+.site-nav .theme-toggle:focus-visible {
+  outline: 3px solid #ffd60a;
+  outline-offset: 2px;
+}
+
+/* На телефоне кнопка внутри раскрытого меню: на всю ширину, не прижата к краю */
+@media (max-width: 767.98px) {
+  .site-nav .theme-toggle { width: 100%; justify-content: center; margin: .5rem 0; }
+}
+
+/* 6. Карточки и блоки Bootstrap берут цвета темы */
+[data-theme="light"] .card,
+[data-theme="light"] .panel,
+[data-theme="light"] .race-form {
+  background: var(--surface);
+  color: var(--text);
+}
+
+/* 7. Таблицы (teams.html, таблица очков на index.html) в обоих режимах.
+      Bootstrap красит ячейки через свои переменные, поэтому переопределяем и их.
+      Селектор с [data-theme] сильнее обычных .class td из style.css. */
+[data-theme] table,
+[data-theme] .table {
+  --bs-table-color: var(--text);
+  --bs-table-bg: transparent;
+  --bs-table-border-color: var(--border);
+  --bs-table-striped-color: var(--text);
+  --bs-table-hover-color: var(--text);
+  color: var(--text);
+}
+[data-theme] table td,
+[data-theme] table th[scope="row"],
+[data-theme] .table > :not(caption) > * > * {
+  color: var(--text);
+  background-color: transparent;
+  border-color: var(--border);
+}
+[data-theme] table thead th {
+  color: var(--muted);          /* контраст не ниже 4.5:1 в обоих режимах */
+  border-bottom: 2px solid var(--accent);
+}
+[data-theme] table caption {
+  color: var(--muted);
+}
+[data-theme] table tbody tr:hover > * {
+  background-color: color-mix(in srgb, var(--accent) 10%, transparent);
+}
+
+/* 8. Поля форм (contact-форма на главной, билеты, поиск мест) */
+:root { --field-bg: #ffffff; }
+[data-theme="dark"] { --field-bg: #23232d; }
+
+[data-theme] .form-control,
+[data-theme] .form-select {
+  background-color: var(--field-bg);
+  color: var(--text);
+  border: 1px solid var(--border);
+}
+[data-theme] .form-control::placeholder { color: var(--muted); opacity: 1; }
+[data-theme] .form-control:focus,
+[data-theme] .form-select:focus {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 .2rem color-mix(in srgb, var(--accent) 30%, transparent);
+}
+[data-theme] .form-control.is-invalid,
+[data-theme] .form-select.is-invalid { border-color: var(--error); }
+[data-theme] .form-control.is-valid,
+[data-theme] .form-select.is-valid { border-color: var(--success); }
+
+[data-theme] .form-label,
+[data-theme] .form-check-label { color: var(--text); }
+[data-theme] .form-text,
+[data-theme] .seat-help { color: var(--muted); }
+[data-theme] .error-text { color: var(--error); }
+
+/* Radio и checkbox: видны в обоих режимах */
+[data-theme] .form-check-input {
+  background-color: var(--field-bg);
+  border: 2px solid var(--muted);
+}
+[data-theme] .form-check-input:checked {
+  background-color: var(--accent);
+  border-color: var(--accent);
+}
+[data-theme] .form-check-input:focus-visible {
+  outline: 3px solid var(--focus);
+  outline-offset: 2px;
+  box-shadow: none;
+}
+
+/* 9. Аккордеон глоссария (Bootstrap accordion) */
+[data-theme] .accordion-item {
+  background: var(--surface);
+  color: var(--text);
+  border-color: var(--border);
+}
+[data-theme] .accordion-button {
+  background: var(--surface);
+  color: var(--text);
+  box-shadow: none;
+}
+[data-theme] .accordion-button:not(.collapsed) {
+  background: var(--accent);
+  color: var(--accent-text);
+}
+[data-theme="light"] .accordion-button:not(.collapsed)::after { filter: brightness(0) invert(1); }
+[data-theme="dark"] .accordion-button:not(.collapsed)::after { filter: brightness(0); }
+[data-theme] .accordion-button:focus-visible {
+  outline: 3px solid var(--focus);
+  outline-offset: -3px;
+}
+[data-theme] .accordion-body {
+  background: var(--surface);
+  color: var(--text);
+}
+
+/* 10. Футер */
+[data-theme] .site-footer { color: var(--muted); border-top: 1px solid var(--border); }
+[data-theme] .site-footer h1,
+[data-theme] .site-footer h2,
+[data-theme] .site-footer h3,
+[data-theme] .site-footer h4,
+[data-theme] .site-footer h5,
+[data-theme] .site-footer h6,
+[data-theme] .site-footer .logo,
+[data-theme] .site-footer strong { color: var(--text); }
+[data-theme] .site-footer a { color: var(--text); text-decoration: underline; }
+[data-theme] .site-footer a:hover { color: var(--accent); }
+[data-theme] .site-footer .legal { color: var(--muted); }
+
+/* 11. Контурные кнопки (Best seats, Lower, New game) */
+[data-theme] .btn-outline {
+  background: transparent;
+  color: var(--text);
+  border: 2px solid var(--text);
+}
+[data-theme] .btn-outline:hover,
+[data-theme] .btn-outline:focus-visible {
+  background: var(--text);
+  color: var(--bg);
+}
+
+/* 12. Игра: тёмные карточки трасс остаются тёмными в обоих режимах,
+      значит текст внутри всегда светлый.
+      Класс .circuit взят из play.html. */
+[data-theme] .circuit,
+[data-theme] .circuit h2,
+[data-theme] .circuit h3,
+[data-theme] .circuit p {
+  color: #f2f2f6;
+}
+[data-theme] .circuit .label { color: #b4b4c0; }
+[data-theme] .circuit .big { color: #ffd60a; }
