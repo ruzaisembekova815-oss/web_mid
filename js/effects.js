@@ -1,7 +1,7 @@
 /* jQuery effects (criterion 5). Load jQuery BEFORE this file.
    ADJUST: '.glossary h3' / '.glossary' to match your glossary markup on index.html.
    Needs '#result' on tickets.html and the .back-top class in CSS (see below). */
-$(function () {
+jQuery(function ($) {
 
   // Effect 1: smooth scroll for in-page links
   $('a[href^="#"]').on('click', function (e) {
